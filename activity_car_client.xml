@@ -1,0 +1,74 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent" >
+    
+	    <WebView 
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/carView"/>
+
+			<RelativeLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:clickable="true" >
+
+			    <Button
+			        android:id="@+id/left"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_below="@+id/forward"
+			        android:layout_toLeftOf="@+id/back"
+			        android:minHeight="64dp"
+			        android:text="@string/TurnLeft" />
+
+			    <Button
+			        android:id="@+id/back"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentBottom="true"
+			        android:layout_toLeftOf="@+id/right"
+			        android:minHeight="64dp"
+			        android:text="@string/Backward" />
+
+			    <Button
+			        android:id="@+id/right"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentBottom="true"
+			        android:layout_alignParentRight="true"
+			        android:layout_marginRight="16dp"
+			        android:minHeight="64dp"
+			        android:text="@string/TurnRight" />
+
+			    <Button
+			        android:id="@+id/forward"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_above="@+id/back"
+			        android:layout_toLeftOf="@+id/right"
+			        android:minHeight="64dp"
+			        android:text="@string/Forward" />
+
+			    <Button
+			        android:id="@+id/stop"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentBottom="true"
+			        android:layout_alignParentLeft="true"
+			        android:layout_marginBottom="19dp"
+			        android:layout_marginLeft="10dp"
+			        android:minHeight="64dp"
+			        android:text="@string/Stop" />
+
+			    <Button
+			        android:id="@+id/btnSave"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignBottom="@+id/left"
+			        android:layout_below="@+id/forward"
+			        android:layout_toLeftOf="@+id/left"
+			        android:text="Save" />
+
+			</RelativeLayout>
+	
+</FrameLayout>

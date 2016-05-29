@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">内瑟斯</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Forward">w</string>
+    <string name="Backward">s</string>
+    <string name="TurnLeft">a</string>
+    <string name="TurnRight">d</string>
+    <string name="Stop">Stop</string>
+    <drawable name="clr_normal">#000000</drawable>
+ 	<drawable name="clr_pressed">#a44100</drawable>
+
+</resources>
