@@ -33,19 +33,19 @@ public class CarClient extends Activity implements OnTouchListener{
 	private Button Stop = null;
 	private Button mBtnSave = null;
 	private WebView carView = null;
-    private Bitmap mBitmap;
-    private int btn_count = 0;
-    private String pwmFileName;
+    	private Bitmap mBitmap;
+    	private int btn_count = 0;
+    	private String pwmFileName;
 	private String mFileName;
 	private int file_count = 0;
-    private boolean pwmW = false;
-    private boolean pwmA = false;
-    private boolean pwmS = false;
-    private boolean pwmD = false;
-    private final static String ALBUM_PATH
-    = Environment.getExternalStorageDirectory() + "/CarImage/";
-    private final static String PWM_PATH
-    = Environment.getExternalStorageDirectory() + "/CarPWM/";
+	private boolean pwmW = false;
+	private boolean pwmA = false;
+	private boolean pwmS = false;
+	private boolean pwmD = false;
+	private final static String ALBUM_PATH
+    		= Environment.getExternalStorageDirectory() + "/CarImage/";
+	private final static String PWM_PATH
+		= Environment.getExternalStorageDirectory() + "/CarPWM/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +54,11 @@ public class CarClient extends Activity implements OnTouchListener{
 		setContentView(R.layout.activity_car_client);
 		
 		
-		/*ÓÃÓÚÇ¿ÖÆÖ÷Ïß³Ì·ÃÎÊÍøÂç£ºÕâÀïÓÉÓÚÏÂÔØµÄÍ¼Æ¬½ÏĞ¡£¬ËùÒÔÇ¿ÖÆ·ÃÎÊ£»
-		 * ÈôÒªÏÂÔØµÄÊı¾İ½Ï´óÊ±£¬ÇëĞÂ½¨Ò»¸ö×ÓÏß³ÌÓÃÓÚ·ÃÎÊÍøÂç*/
+		/*ç”¨äºå¼ºåˆ¶ä¸»çº¿ç¨‹è®¿é—®ç½‘ç»œï¼šè¿™é‡Œç”±äºä¸‹è½½çš„å›¾ç‰‡è¾ƒå°ï¼Œæ‰€ä»¥å¼ºåˆ¶è®¿é—®ï¼›
+		 * è‹¥è¦ä¸‹è½½çš„æ•°æ®è¾ƒå¤§æ—¶ï¼Œè¯·æ–°å»ºä¸€ä¸ªå­çº¿ç¨‹ç”¨äºè®¿é—®ç½‘ç»œ*/
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);}
+            		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            		StrictMode.setThreadPolicy(policy);}
 		
 		ForWard = (Button)findViewById(R.id.forward);
 		BackWard = (Button)findViewById(R.id.back);
@@ -72,30 +72,30 @@ public class CarClient extends Activity implements OnTouchListener{
 		TurnLeft.setOnTouchListener(this);
 		Stop.setOnTouchListener(this);
 		
-		/*WebView¿Ø¼ş£ºÓÃÓÚ·ÃÎÊ·şÎñÆ÷¶Ë¿Ú»ñÈ¡³µ×ÓµÄÉãÏñÍ·»­Ãæ*/
+		/*WebViewæ§ä»¶ï¼šç”¨äºè®¿é—®æœåŠ¡å™¨ç«¯å£è·å–è½¦å­çš„æ‘„åƒå¤´ç”»é¢*/
 		carView = (WebView)findViewById(R.id.carView);
 		carView.loadUrl("http://192.168.1.1:8080/?action=stream");
 		
-        /*±£´æÎÄ¼ş°´æ¤¼àÌıÊÂ¼ş£º°´ÏÂÊ±£¬Æô¶¯ÏÂÔØÍ¼Æ¬°´Ïß³Ì²¢±£´æ
-         * ËÉ¿ªÊ±£¬½áÊøÏß³Ì£¬²»ÔÙÏÂÔØ£¬±£´æÊı¾İ*/
+        /*ä¿å­˜æ–‡ä»¶æŒ‰å¦ç›‘å¬äº‹ä»¶ï¼šæŒ‰ä¸‹æ—¶ï¼Œå¯åŠ¨ä¸‹è½½å›¾ç‰‡æŒ‰çº¿ç¨‹å¹¶ä¿å­˜
+         * æ¾å¼€æ—¶ï¼Œç»“æŸçº¿ç¨‹ï¼Œä¸å†ä¸‹è½½ï¼Œä¿å­˜æ•°æ®*/
         mBtnSave.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
            
-                //°´¼ü¼ÆÊı±êÖ¾
+                //æŒ‰é”®è®¡æ•°æ ‡å¿—
                 ++  btn_count;
                 if (btn_count %2 == 1){
                 	Toast.makeText(CarClient.this, "Start to save data...", Toast.LENGTH_SHORT).show();
-                	//Æô¶¯Ïß³Ì
+                	//å¯åŠ¨çº¿ç¨‹
                 	new Thread(connectNet).start();
                 }else{
-                	//³·ÏúÏß³Ì
+                	//æ’¤é”€çº¿ç¨‹
                 	connecthandler.removeCallbacks(connectNet);
                 }
         }
         });
 	}
     
-	/*ÍøÂç·ÃÎÊº¯Êı£¬ÓÃÓÚ´ÓÍøÂçÉÏÏÂÔØÍ¼Æ¬£¬²¢·µ»Øinputstream*/
+	/*ç½‘ç»œè®¿é—®å‡½æ•°ï¼Œç”¨äºä»ç½‘ç»œä¸Šä¸‹è½½å›¾ç‰‡ï¼Œå¹¶è¿”å›inputstream*/
     public InputStream getImageStream(String path) throws Exception{
         URL url = new URL(path);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -108,8 +108,8 @@ public class CarClient extends Activity implements OnTouchListener{
     }  
     
     /*
-     * Á¬½ÓÍøÂç
-     * ÓÉÓÚÔÚ4.0ÖĞ²»ÔÊĞíÔÚÖ÷Ïß³ÌÖĞ·ÃÎÊÍøÂç£¬ËùÒÔĞèÒªÔÚ×ÓÏß³ÌÖĞ·ÃÎÊ
+     * è¿æ¥ç½‘ç»œ
+     * ç”±äºåœ¨4.0ä¸­ä¸å…è®¸åœ¨ä¸»çº¿ç¨‹ä¸­è®¿é—®ç½‘ç»œï¼Œæ‰€ä»¥éœ€è¦åœ¨å­çº¿ç¨‹ä¸­è®¿é—®
      */
     private Handler connecthandler = new Handler();
     
@@ -123,32 +123,32 @@ public class CarClient extends Activity implements OnTouchListener{
 
                 String filePath = "http://192.168.1.1:8080/?action=snapshot";
         
-                //È¡µÃµÄÊÇInputStream£¬Ö±½Ó´ÓInputStreamÉú³Ébitmap
+                //å–å¾—çš„æ˜¯InputStreamï¼Œç›´æ¥ä»InputStreamç”Ÿæˆbitmap
                 mBitmap = BitmapFactory.decodeStream(getImageStream(filePath));
                 
-                //µ÷ÓÃ±£´æÎÄ¼ş·½·¨
+                //è°ƒç”¨ä¿å­˜æ–‡ä»¶æ–¹æ³•
                 Save save = new Save();
             	save.saveImage(mBitmap);
             	save.savePWM();
             	
             } catch (Exception e) {
-                Toast.makeText(CarClient.this,"ÎŞ·¨Á´½ÓÍøÂç£¡", 1).show();
+                Toast.makeText(CarClient.this,"æ— æ³•é“¾æ¥ç½‘ç»œï¼", 1).show();
                 e.printStackTrace();
                 System.out.println(e);
             }
             
-            //Ïß³ÌÃ¿¸ô2ÃëÔËĞĞÒ»´Î
+            //çº¿ç¨‹æ¯éš”2ç§’è¿è¡Œä¸€æ¬¡
             connecthandler.postDelayed(connectNet, 500);
         }
     };
     
-    /*ÄÚ²¿Àà£¬ÓÃÓÚ±£´æÎÄ¼ş£¨Í¼Æ¬ºÍPWM£©*/
+    /*å†…éƒ¨ç±»ï¼Œç”¨äºä¿å­˜æ–‡ä»¶ï¼ˆå›¾ç‰‡å’ŒPWMï¼‰*/
     public class Save {
 
     	public void saveImage(Bitmap bm){
         	try {
         		if (pwmA||pwmW||pwmS||pwmD == true){
-        		//ÎÄ¼şÃûµİÔö
+        		//æ–‡ä»¶åé€’å¢
                 String s =null;
             	++file_count;
             	s = Integer.toString(file_count);
@@ -165,7 +165,7 @@ public class CarClient extends Activity implements OnTouchListener{
         }
 
         /**
-         * ±£´æÎÄ¼ş
+         * ä¿å­˜æ–‡ä»¶
          * @param bm
          * @param fileName
          * @throws IOException
@@ -185,7 +185,7 @@ public class CarClient extends Activity implements OnTouchListener{
         public void savePWM(){
         	try {
         		
-        		//ÎÄ¼şÃûµİÔö
+        		//æ–‡ä»¶åé€’å¢
             	pwmFileName = "PWM.txt";
             	
             	if(pwmW == true){
@@ -204,7 +204,7 @@ public class CarClient extends Activity implements OnTouchListener{
     		}
         }
         
-      //±£´æPWMÊı¾İ
+      //ä¿å­˜PWMæ•°æ®
         public void savePWM(String pwm1,String pwm2, String fileName) throws IOException {
             File dirFile = new File(PWM_PATH);
             if(!dirFile.exists()){
@@ -215,7 +215,7 @@ public class CarClient extends Activity implements OnTouchListener{
             writer.write("(" + pwm1 + "," + pwm2 + ")");
             writer.write("\r\n");
             writer.flush();
-            writer.close();//¼ÇµÃ¹Ø±Õ
+            writer.close();//è®°å¾—å…³é—­
 
             outStream.close();
         }
@@ -223,9 +223,9 @@ public class CarClient extends Activity implements OnTouchListener{
     }
 
     /**
-     * 5¸ö°´¼ü¼àÌıÊÂ¼ş£¬
-     * ForWard£¬BackWard£¬TurnLeft£¬TurnRight£¬Stop
-     * ·Ö±ğ¶ÔÓ¦ÓÚ¿ØÖÆ³µ×ÓµÄÇ°½ø£¬ºóÍË£¬×ó×ª£¬ÓÒ×ªÒÔ¼°É²³µ
+     * 5ä¸ªæŒ‰é”®ç›‘å¬äº‹ä»¶ï¼Œ
+     * ForWardï¼ŒBackWardï¼ŒTurnLeftï¼ŒTurnRightï¼ŒStop
+     * åˆ†åˆ«å¯¹åº”äºæ§åˆ¶è½¦å­çš„å‰è¿›ï¼Œåé€€ï¼Œå·¦è½¬ï¼Œå³è½¬ä»¥åŠåˆ¹è½¦
      **/
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -234,7 +234,7 @@ public class CarClient extends Activity implements OnTouchListener{
 		case R.id.forward:
 			if (event.getAction()==MotionEvent.ACTION_DOWN){
 				   pwmW = true;
-					//´´½¨Ò»¸öSocket¶ÔÏó£¬Ö¸¶¨·şÎñÆ÷¶ËµÄIPµØÖ·ºÍ¶Ë¿ÚºÅ
+					//åˆ›å»ºä¸€ä¸ªSocketå¯¹è±¡ï¼ŒæŒ‡å®šæœåŠ¡å™¨ç«¯çš„IPåœ°å€å’Œç«¯å£å·
 				   Socket_send sck = new Socket_send();
 				   sck.send("w");
 				   
@@ -249,7 +249,7 @@ public class CarClient extends Activity implements OnTouchListener{
 		case R.id.back:
 			if (event.getAction()==MotionEvent.ACTION_DOWN){
 				   pwmW = true;
-					//´´½¨Ò»¸öSocket¶ÔÏó£¬Ö¸¶¨·şÎñÆ÷¶ËµÄIPµØÖ·ºÍ¶Ë¿ÚºÅ
+					//åˆ›å»ºä¸€ä¸ªSocketå¯¹è±¡ï¼ŒæŒ‡å®šæœåŠ¡å™¨ç«¯çš„IPåœ°å€å’Œç«¯å£å·
 				   Socket_send sck = new Socket_send();
 				   sck.send("s");
 				   
@@ -264,7 +264,7 @@ public class CarClient extends Activity implements OnTouchListener{
 		case R.id.left:
 			if (event.getAction()==MotionEvent.ACTION_DOWN){
 				   pwmW = true;
-					//´´½¨Ò»¸öSocket¶ÔÏó£¬Ö¸¶¨·şÎñÆ÷¶ËµÄIPµØÖ·ºÍ¶Ë¿ÚºÅ
+					//åˆ›å»ºä¸€ä¸ªSocketå¯¹è±¡ï¼ŒæŒ‡å®šæœåŠ¡å™¨ç«¯çš„IPåœ°å€å’Œç«¯å£å·
 				   Socket_send sck = new Socket_send();
 				   sck.send("a");
 				   
@@ -279,7 +279,7 @@ public class CarClient extends Activity implements OnTouchListener{
 		case R.id.right:
 			if (event.getAction()==MotionEvent.ACTION_DOWN){
 				   pwmW = true;
-					//´´½¨Ò»¸öSocket¶ÔÏó£¬Ö¸¶¨·şÎñÆ÷¶ËµÄIPµØÖ·ºÍ¶Ë¿ÚºÅ
+					//åˆ›å»ºä¸€ä¸ªSocketå¯¹è±¡ï¼ŒæŒ‡å®šæœåŠ¡å™¨ç«¯çš„IPåœ°å€å’Œç«¯å£å·
 				   Socket_send sck = new Socket_send();
 				   sck.send("d");
 				   
@@ -294,7 +294,7 @@ public class CarClient extends Activity implements OnTouchListener{
 		case R.id.stop:
 			if (event.getAction()==MotionEvent.ACTION_DOWN){
 				   pwmW = true;
-					//´´½¨Ò»¸öSocket¶ÔÏó£¬Ö¸¶¨·şÎñÆ÷¶ËµÄIPµØÖ·ºÍ¶Ë¿ÚºÅ
+					//åˆ›å»ºä¸€ä¸ªSocketå¯¹è±¡ï¼ŒæŒ‡å®šæœåŠ¡å™¨ç«¯çš„IPåœ°å€å’Œç«¯å£å·
 				   Socket_send sck = new Socket_send();
 				   sck.send("f");
 				   
